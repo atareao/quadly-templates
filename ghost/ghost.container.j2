@@ -1,0 +1,16 @@
+[Container]
+Image={{ image | default("ghost:alpine") }}
+ContainerName={{ service_name }}
+
+# Incluimos etiquetas de Traefik comunes desde la carpeta common
+{% include "common/traefik-labels.j2" %}
+
+# Montamos el archivo renderizado en la carpeta XDG
+Volume=%h/.config/{{ service_name }}/config.json:/var/lib/ghost/config.production.json:ro
+
+{% for vol in volumes -%}
+Volume={{ vol }}
+{%- endfor %}
+
+[Service]
+Restart=always

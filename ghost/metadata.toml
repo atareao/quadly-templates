@@ -1,0 +1,8 @@
+[info]
+version = "1.0"
+description = "Plantilla para Ghost CMS"
+
+[outputs]
+# Plantilla -> Destino (definido en el enum de Rust)
+"ghost.container.j2" = "systemd"
+"config.json.j2"     = "config"
